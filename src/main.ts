@@ -8,7 +8,6 @@ async function bootstrap() {
     .setTitle('Array Data')
     .setDescription('Crud operation on array')
     .setVersion('1.0')
-    .addTag('Array')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
