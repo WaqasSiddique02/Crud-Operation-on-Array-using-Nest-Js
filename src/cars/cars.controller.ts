@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, ValidationPipe } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { CarDto } from './dto/cars.dto';
 
 @Controller('cars')
 @ApiTags('cars')
@@ -22,7 +23,7 @@ export class CarsController {
       description: 'The info to add',
       type: String,
     })
-    create(@Body() car: { make: string; model: string; year: number }) {
+    create(@Body(ValidationPipe) car: CarDto) {
       return this.carsService.create(car);
     }
 
@@ -31,7 +32,7 @@ export class CarsController {
       description: 'The info to add',
       type: String,
     })
-    update(@Param('id',ParseIntPipe) id: number,@Body() car: { make: string; model: string; year: number }){
+    update(@Param('id',ParseIntPipe) id: number,@Body(ValidationPipe) car: CarDto){
       return this.carsService.update(id,car);
     }
   
