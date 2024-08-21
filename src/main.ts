@@ -4,9 +4,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = new DocumentBuilder()
-    .setTitle('Array Data')
-    .setDescription('Crud operation on array')
+    .setTitle('Practice')
+    .setDescription('Crud Operation')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
